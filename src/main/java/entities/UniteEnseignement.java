@@ -1,105 +1,114 @@
 package entities;
 import java.io.Serializable;
-
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 
 public class UniteEnseignement implements Serializable {
 
-	/**
+    /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	
-	
-	@Column(unique = true)
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id_unite;
 	@Basic
-	private String nom_unite;
-	@Basic
-	private int total_unite;
-	@Basic
-	private int CM_unite;
-	@Basic
-	private int TD_unite;
-	@Basic
-	private int TP_unite;
-	@Basic
-	private int ECTS_unite;
-	
-	public UniteEnseignement(String nom_unite, int total_unite, int cM_unite, int tD_unite, int tP_unite,
-			int eCTS_unite) {
-		
-		this.nom_unite = nom_unite;
-		this.total_unite = total_unite;
-		CM_unite = cM_unite;
-		TD_unite = tD_unite;
-		TP_unite = tP_unite;
-		ECTS_unite = eCTS_unite;
-	}
+    private long ECTS_unite;
 
-	public int getId_unite() {
-		return id_unite;
-	}
+    @Basic
+    private long CM_unite;
 
-	public void setId_unite(int id_unite) {
-		this.id_unite = id_unite;
-	}
+    @Column(unique = true)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id_unite;
 
-	public String getNom_unite() {
-		return nom_unite;
-	}
+    @OneToMany(targetEntity = Matiere.class, mappedBy = "id_UniteEn")
+    private List<Matiere> ListMatieres;
 
-	public void setNom_unite(String nom_unite) {
-		this.nom_unite = nom_unite;
-	}
+    @Basic
+    private long total_unite;
 
-	public int getTotal_unite() {
-		return total_unite;
-	}
+    @Basic
+    private long TD_unite;
 
-	public void setTotal_unite(int total_unite) {
-		this.total_unite = total_unite;
-	}
+    @Basic
+    private long TP_unite;
 
-	public int getCM_unite() {
-		return CM_unite;
-	}
+    @Basic
+    private String nom_unite;
 
-	public void setCM_unite(int cM_unite) {
-		CM_unite = cM_unite;
-	}
+    public UniteEnseignement() {
 
-	public int getTD_unite() {
-		return TD_unite;
-	}
+    }
 
-	public void setTD_unite(int tD_unite) {
-		TD_unite = tD_unite;
-	}
+    public long getECTS_unite() {
+        return this.ECTS_unite;
+    }
 
-	public int getTP_unite() {
-		return TP_unite;
-	}
+    public void setECTS_unite(long ECTS_unite) {
+        this.ECTS_unite = ECTS_unite;
+    }
 
-	public void setTP_unite(int tP_unite) {
-		TP_unite = tP_unite;
-	}
+    public long getCM_unite() {
+        return this.CM_unite;
+    }
 
-	public int getECTS_unite() {
-		return ECTS_unite;
-	}
+    public void setCM_unite(long CM_unite) {
+        this.CM_unite = CM_unite;
+    }
 
-	public void setECTS_unite(int eCTS_unite) {
-		ECTS_unite = eCTS_unite;
-	}
-	
-	
+    public Long getId_unite() {
+        return this.id_unite;
+    }
+
+    public void setId_unite(Long id_unite) {
+        this.id_unite = id_unite;
+    }
+
+    public List<Matiere> getListMatieres() {
+        return this.ListMatieres;
+    }
+
+    public void setListMatieres(List<Matiere> ListMatieres) {
+        this.ListMatieres = ListMatieres;
+    }
+
+    public long getTotal_unite() {
+        return this.total_unite;
+    }
+
+    public void setTotal_unite(long total_unite) {
+        this.total_unite = total_unite;
+    }
+
+    public long getTD_unite() {
+        return this.TD_unite;
+    }
+
+    public void setTD_unite(long TD_unite) {
+        this.TD_unite = TD_unite;
+    }
+
+    public long getTP_unite() {
+        return this.TP_unite;
+    }
+
+    public void setTP_unite(long TP_unite) {
+        this.TP_unite = TP_unite;
+    }
+
+    public String getNom_unite() {
+        return this.nom_unite;
+    }
+
+    public void setNom_unite(String nom_unite) {
+        this.nom_unite = nom_unite;
+    }
 }
-

@@ -1,18 +1,23 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import daos.MatiereDao;
+import daos.MatiereDaoImpl;
+import daos.UniteEnseignementDao;
 import daos.UniteEnseignementDaoImpl;
+import entities.Matiere;
 import entities.UniteEnseignement;
 
-/**
- * Servlet implementation class GestionBDTest
- */
+
+
 @WebServlet("/GestionBDTest")
 public class GestionBDTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,9 +27,41 @@ public class GestionBDTest extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		UniteEnseignement u1=new UniteEnseignement("Ingenierie logiciel", 50, 20, 20, 10, 5);
-		UniteEnseignementDaoImpl ud=new UniteEnseignementDaoImpl();
-		ud.create(u1);
+
+		//***********************Test Creation*******************************************
+
+			UniteEnseignement UE1=new UniteEnseignement();
+			UE1.setNom_unite("UE1 : Culture d'entreprise");	
+			
+			
+			Matiere Communication=new Matiere();
+			Communication.setNom_matiere("Communication");
+			Communication.setCM_matiere(9);
+			Communication.setTD_matiere(9);
+			Communication.setTotal_matiere(Communication.getCM_matiere()+Communication.getTD_matiere());
+			Matiere Anglais=new Matiere();
+			Anglais.setNom_matiere("Anglais");
+			Anglais.setTD_matiere(20);
+			Anglais.setTotal_matiere(Anglais.getTD_matiere());
+			
+			Communication.setId_UniteEn(UE1);
+			Anglais.setId_UniteEn(UE1);
+				
+			ArrayList<Matiere>LMatieres=new ArrayList<Matiere>();
+			LMatieres.add(Communication);
+			LMatieres.add(Anglais);
+			UE1.setListMatieres(LMatieres);
+			UE1.setTotal_unite(Communication.getTotal_matiere()+Anglais.getTD_matiere());
+			
+			UniteEnseignementDao ud=new UniteEnseignementDaoImpl();
+			ud.create(UE1);
+	
+			MatiereDao md=new MatiereDaoImpl() ;
+			md.create(Communication);
+			md.create(Anglais);
+
+		
+		
 	}
 
 	/**

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ~ Hibernate, Relational Persistence for Idiomatic Java ~ ~ License: 
+	GNU Lesser General Public License (LGPL), version 2.1 or later. ~ See the 
+	lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>. -->
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- Database connection settings -->
+		<!-- <property name="connection.driver_class">org.hsqldb.jdbcDriver</property> 
+			<property name="connection.url">jdbc:hsqldb:hsql://localhost/TestDB</property> -->
+
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost/GestionFormation</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">mama</property>
+
+		<property name="hibernate.hbm2ddl.auto">create-drop</property>
+
+		<!-- SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+
+		<!-- Names the annotated entity class -->
+		<mapping class="entities.UniteEnseignement" />
+		<mapping class="entities.Matiere" />
+		
+	</session-factory>
+
+</hibernate-configuration>

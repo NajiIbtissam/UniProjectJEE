@@ -1,20 +1,19 @@
 package daos;
 
+import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import entities.Matiere;
-import entities.UniteEnseignement;
 
-public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
-	
-	public void create(UniteEnseignement entity) {
+public class MatiereDaoImpl implements MatiereDao {
+
+	public void create(Matiere entity) {
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
 		try {
 			s.persist(entity);
-			System.out.println("rani persestittttt");
 			tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
@@ -22,11 +21,10 @@ public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
 		}finally {
 			s.close();
 		}
-
 		
 	}
 
-	public void update(UniteEnseignement entity) {
+	public void update(Matiere entity) {
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
 		try {
@@ -37,9 +35,10 @@ public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
 		}finally {
 			s.close();
 		}
+		
 	}
 
-	public void delete(UniteEnseignement entity) {
+	public void delete(Matiere entity) {
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
 		try {
@@ -52,16 +51,15 @@ public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
 			s.close();
 		}
 		
-		
 	}
 
-	public UniteEnseignement getUserById(int id) {
-		UniteEnseignement ue=null;
+	public Matiere getMatiereById(int id) {
+		Matiere matiere=null;
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
 		try {
-		ue=s.get(UniteEnseignement.class, id);
-		//ue= iteEnseignements.byId( UniteEnseignement.class ).load( id );
+		matiere=s.get(Matiere.class, id);
+		//Matiere= s.byId( Matiere.class ).load( id );
 		tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
@@ -69,7 +67,7 @@ public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
 		}finally {
 			s.close();
 		}
-		return ue;
+		return matiere;
 	}
 
 }
