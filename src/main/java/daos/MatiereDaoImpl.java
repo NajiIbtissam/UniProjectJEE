@@ -1,5 +1,7 @@
 package daos;
 
+import java.util.ArrayList;
+
 import javax.persistence.Query;
 
 import org.hibernate.Session;
@@ -68,6 +70,15 @@ public class MatiereDaoImpl implements MatiereDao {
 			s.close();
 		}
 		return matiere;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Matiere> getAllMatieres() {
+		ArrayList<Matiere>matieres=new ArrayList<Matiere>();
+		Session s = HibernateUtils.getSessionFactory().openSession();
+		//Transaction tx = s.beginTransaction();
+		matieres=(ArrayList<Matiere>) s.createCriteria(Matiere.class).list();
+		return matieres;
 	}
 
 }

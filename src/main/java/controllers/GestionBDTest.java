@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -59,8 +60,21 @@ public class GestionBDTest extends HttpServlet {
 			MatiereDao md=new MatiereDaoImpl() ;
 			md.create(Communication);
 			md.create(Anglais);
-
 		
+		ArrayList<Matiere>arraym;
+		MatiereDao mdd=new MatiereDaoImpl();
+		arraym=mdd.getAllMatieres();
+		if(arraym.isEmpty())
+			System.out.println("the array is empty");
+		else
+		{
+//			System.out.println("rani 3amraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+//		System.out.println(arraym.get(0).getNom_matiere());
+			request.setAttribute("maListeMatieres", "arraym");
+
+		    RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
+		    rd.forward(request,response);
+		}
 		
 	}
 
