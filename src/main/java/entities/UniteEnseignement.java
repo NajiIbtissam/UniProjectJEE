@@ -26,10 +26,10 @@ public class UniteEnseignement implements Serializable {
 
     @Column(unique = true)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_unite;
 
-    @OneToMany(targetEntity = Matiere.class, mappedBy = "id_UniteEn")
+    @OneToMany(targetEntity = Matiere.class, mappedBy = "uniteEn")
     private List<Matiere> ListMatieres;
 
     @Basic

@@ -20,7 +20,7 @@ public class Matiere implements Serializable {
 
 	@Column(unique = true)
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_matiere;
 
     @Basic
@@ -33,7 +33,7 @@ public class Matiere implements Serializable {
     private long TD_matiere;
 
     @ManyToOne(targetEntity = UniteEnseignement.class)
-    private UniteEnseignement id_UniteEn;
+    private UniteEnseignement uniteEn;
 
     @Basic
     private long ECTS_matiere;
@@ -80,12 +80,12 @@ public class Matiere implements Serializable {
         this.TD_matiere = TD_matiere;
     }
 
-    public UniteEnseignement getId_UniteEn() {
-        return this.id_UniteEn;
+    public UniteEnseignement getUniteEn() {
+        return this.uniteEn;
     }
 
-    public void setId_UniteEn(UniteEnseignement id_UniteEn) {
-        this.id_UniteEn = id_UniteEn;
+    public void setUniteEn(UniteEnseignement UniteEn) {
+        this.uniteEn = UniteEn;
     }
 
     public long getECTS_matiere() {
