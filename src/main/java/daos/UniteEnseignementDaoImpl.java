@@ -1,6 +1,8 @@
 package daos;
 
 
+import java.util.ArrayList;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -70,6 +72,15 @@ public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
 			s.close();
 		}
 		return ue;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<UniteEnseignement> getAllUnites() {
+		ArrayList<UniteEnseignement>UE=new ArrayList<UniteEnseignement>();
+		Session s = HibernateUtils.getSessionFactory().openSession();
+		//Transaction tx = s.beginTransaction();
+		UE=(ArrayList<UniteEnseignement>) s.createCriteria(UniteEnseignement.class).list();
+		return UE;
 	}
 
 }

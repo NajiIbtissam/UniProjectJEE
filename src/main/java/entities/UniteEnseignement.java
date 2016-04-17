@@ -2,12 +2,15 @@ package entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 
@@ -29,7 +32,7 @@ public class UniteEnseignement implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_unite;
 
-    @OneToMany(targetEntity = Matiere.class, mappedBy = "uniteEn")
+    @OneToMany(targetEntity = Matiere.class, mappedBy = "uniteEn",cascade=CascadeType.ALL)
     private List<Matiere> ListMatieres;
 
     @Basic
@@ -81,7 +84,7 @@ public class UniteEnseignement implements Serializable {
     }
 
     public long getTotal_unite() {
-        return this.total_unite;
+    	return TD_unite+TP_unite+CM_unite;
     }
 
     public void setTotal_unite(long total_unite) {

@@ -105,7 +105,7 @@ public class Matiere implements Serializable {
     }
 
     public long getTotal_matiere() {
-        return this.total_matiere;
+    	return this.total_matiere=TD_matiere+TP_matiere+CM_matiere;
     }
 
     public void setTotal_matiere(long total_matiere) {
