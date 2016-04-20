@@ -4,5 +4,16 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<display-name>formation</display-name>
+	<servlet>
+		<description>
+		</description>
+		<display-name>UniteManip</display-name>
+		<servlet-name>UniteManip</servlet-name>
+		<servlet-class>controllers.UniteManip</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UniteManip</servlet-name>
+		<url-pattern>/UniteManip</url-pattern>
+	</servlet-mapping>
 
 </web-app>

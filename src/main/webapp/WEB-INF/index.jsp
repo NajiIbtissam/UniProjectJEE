@@ -10,9 +10,11 @@
 	href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.flatly.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/style.css">
+<link
+	href="${pageContext.request.contextPath}/bootstrap3-editable/css/bootstrap-editable.css"
+	rel="stylesheet">
 </head>
 <body>
-
 	<div class="navbar navbar-default navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -51,26 +53,27 @@
 
 
 			<c:forEach var="item" items="${list}">
-				<tbody>
-					<tr class="unite">
-						<td><a href="#" class="unitelink" value="${item.id_unite}">${item.nom_unite}</a><br /></td>
-						<td>${item.CM_unite}<br /></td>
-						<td>${item.TD_unite}<br /></td>
-						<td>${item.TP_unite}<br /></td>
-						<td>${item.ECTS_unite}<br /></td>
-						<td>${item.total_unite}<br /></td>
+				<tbody class="unite">
+					<tr>
+						<td><a id="nom" href="#" data-pk="${item.id_unite}">${item.nom_unite}</a>
+							<a class="unitelink" data-pk="${item.id_unite}"><span
+								class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></td>
+						<td><a id="cm" href=# data-pk="${item.id_unite}">${item.CM_unite}</a></td>
+						<td><a id="td" href=# data-pk="${item.id_unite}">${item.TD_unite}</a></td>
+						<td><a id="tp" href=# data-pk="${item.id_unite}">${item.TP_unite}</a></td>
+						<td><a id="ects" href=# data-pk="${item.id_unite}">${item.ECTS_unite}</a></td>
+						<td>${item.total_unite}</td>
 					</tr>
 				</tbody>
-				<tbody id="${item.id_unite}" class="mat-hidden">
+				<tbody id="${item.id_unite}" class="mat-hidden matieres">
 					<c:forEach var="mat" items="${item.listMatieres}">
-
-						<tr class="mat" >
-							<td>-${mat.nom_matiere}<br /></td>
-							<td>${mat.CM_matiere}<br /></td>
-							<td>${mat.TD_matiere}<br /></td>
-							<td>${mat.TP_matiere}<br /></td>
-							<td>${mat.ECTS_matiere}<br /></td>
-							<td>${mat.total_matiere}<br /></td>
+						<tr class="mat">
+							<td>-<a id="nom" href=# data-pk="${mat.id_matiere}">${mat.nom_matiere}</a></td>
+							<td><a id="cm" href=# data-pk="${mat.id_matiere}">${mat.CM_matiere}</a></td>
+							<td><a id="td" href=# data-pk="${mat.id_matiere}">${mat.TD_matiere}</a></td>
+							<td><a id="tp" href=# data-pk="${mat.id_matiere}">${mat.TP_matiere}</a></td>
+							<td><a id="ects" href=# data-pk="${mat.id_matiere}">${mat.ECTS_matiere}</a></td>
+							<td>${mat.total_matiere}</td>
 						</tr>
 
 					</c:forEach>
@@ -86,5 +89,7 @@
 		src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/js/script.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/bootstrap3-editable/js/bootstrap-editable.js"></script>
 </body>
 </html>
