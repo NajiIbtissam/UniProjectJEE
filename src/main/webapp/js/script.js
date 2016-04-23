@@ -4,15 +4,71 @@ $(document).ready(function() {
 		id = "#" + $(this).attr("data-pk");
 		$(id).toggle();
 	});
+	$('.unite a#nom').editable({
+		type : 'textarea',
+		url : './UniteManip',
+		title : 'Enter new value',
+		params : {
+			action : "edit"
+		}
 
-	$('.unite a').not( ".unitelink" ).editable({
+	});
+	$('.unite a').not("#nom").not(".unitelink").not(".action").editable({
 		type : 'text',
 		url : './UniteManip',
-		title : 'Enter new value'
+		title : 'Enter new value',
+		params : {
+			action : "edit"
+		},
+		success : function(response, newValue) {
+
+			$("[unitetotal='" + $(this).attr("data-pk") + "']").html(response);
+		}
+
 	});
-	$('.matieres a').editable({
+	$('.matieres a#nom').editable({
+		type : 'textarea',
+		url : './MatiereManip',
+		title : 'Enter new value',
+		params : {
+			action : "edit"
+		}
+	});
+	$('.matieres a').not("#nom").editable({
 		type : 'text',
 		url : './MatiereManip',
-		title : 'Enter new value'
+		title : 'Enter new value',
+		params : {
+			action : "edit"
+		},
+		success : function(response, newValue) {
+
+			$("[matieretotal='" + $(this).attr("data-pk") + "']").html(response);
+		}
 	});
+	$(".deleteunite").click(function(e){
+		id=$(this).attr("data-pk");
+		bootbox.confirm("Are you sure?", function(result) {
+			if (result==true){
+				$.ajax({
+			        url: './UniteManip',
+			        type: 'POST',
+			        data: { action: "delete", 
+			        	pk:id
+			        } ,
+			        success: function (response) {
+			            location.reload();
+			        },
+			        error: function () {
+			            //your error code
+			        }
+			    });} 
+		});  });
+		
+
+		
+		$(".addunite").click(function(e){
+			
+		});
+		
 });

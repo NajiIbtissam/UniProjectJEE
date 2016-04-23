@@ -57,7 +57,7 @@ public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
 		
 	}
 
-	public UniteEnseignement getUserById(int id) {
+	public UniteEnseignement getUniteById(long id) {
 		UniteEnseignement ue=null;
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();

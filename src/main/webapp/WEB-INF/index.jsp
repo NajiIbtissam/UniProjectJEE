@@ -48,6 +48,7 @@
 					<th>TP</th>
 					<th>ECTS</th>
 					<th>TOTAL</th>
+					<th>ACTION</th>
 				</tr>
 			</thead>
 
@@ -55,14 +56,28 @@
 			<c:forEach var="item" items="${list}">
 				<tbody class="unite">
 					<tr>
-						<td><a id="nom" href="#" data-pk="${item.id_unite}">${item.nom_unite}</a>
-							<a class="unitelink" data-pk="${item.id_unite}"><span
-								class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></td>
-						<td><a id="cm" href=# data-pk="${item.id_unite}">${item.CM_unite}</a></td>
-						<td><a id="td" href=# data-pk="${item.id_unite}">${item.TD_unite}</a></td>
-						<td><a id="tp" href=# data-pk="${item.id_unite}">${item.TP_unite}</a></td>
-						<td><a id="ects" href=# data-pk="${item.id_unite}">${item.ECTS_unite}</a></td>
-						<td>${item.total_unite}</td>
+						<td><a id="nom" href="#" data-pk="${item.id_unite}"
+							url="./UniteManip">${item.nom_unite}</a> <c:if
+								test="${not empty item.listMatieres}">
+								<a class="unitelink" data-pk="${item.id_unite}" href="#"
+									url="./UniteManip"><span
+									class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+								</a>
+							</c:if></td>
+						<td><a id="cm" href=# data-pk="${item.id_unite}"
+							url="./UniteManip">${item.CM_unite}</a></td>
+						<td><a id="td" href=# data-pk="${item.id_unite}"
+							url="./UniteManip">${item.TD_unite}</a></td>
+						<td><a id="tp" href=# data-pk="${item.id_unite}"
+							url="./UniteManip">${item.TP_unite}</a></td>
+						<td><a id="ects" href=# data-pk="${item.id_unite}"
+							url="./UniteManip">${item.ECTS_unite}</a></td>
+						<td unitetotal="${item.id_unite}">${item.total_unite}</td>
+						<td  align="center"><a href="#" class="action addunite"><span
+								class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+								
+							&nbsp;<a class="action deleteunite" href="#" data-pk="${item.id_unite}"><span class="glyphicon glyphicon-remove"
+								aria-hidden="true"></span></a></td>
 					</tr>
 				</tbody>
 				<tbody id="${item.id_unite}" class="mat-hidden matieres">
@@ -73,13 +88,38 @@
 							<td><a id="td" href=# data-pk="${mat.id_matiere}">${mat.TD_matiere}</a></td>
 							<td><a id="tp" href=# data-pk="${mat.id_matiere}">${mat.TP_matiere}</a></td>
 							<td><a id="ects" href=# data-pk="${mat.id_matiere}">${mat.ECTS_matiere}</a></td>
-							<td>${mat.total_matiere}</td>
+							<td matieretotal="${mat.id_matiere}">${mat.total_matiere}</td>
 						</tr>
 
 					</c:forEach>
+					<div class="modal fade" tabindex="-1" role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+									<h4 class="modal-title">Modal title</h4>
+								</div>
+								<div class="modal-body">
+									<p>One fine body&hellip;</p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Save
+										changes</button>
+								</div>
+							</div>
+							<!-- /.modal-content -->
+						</div>
+						<!-- /.modal-dialog -->
+					</div>
+					<!-- /.modal -->
+
 				</tbody>
 			</c:forEach>
-
 
 		</table>
 	</div>
@@ -91,5 +131,6 @@
 		src="${pageContext.request.contextPath}/js/script.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/bootstrap3-editable/js/bootstrap-editable.js"></script>
+		<script src="${pageContext.request.contextPath}/js/bootbox.min.js"></script>
 </body>
 </html>

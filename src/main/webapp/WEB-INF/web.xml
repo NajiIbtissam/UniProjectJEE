@@ -11,9 +11,20 @@
 		<servlet-name>UniteManip</servlet-name>
 		<servlet-class>controllers.UniteManip</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>MatiereManip</display-name>
+		<servlet-name>MatiereManip</servlet-name>
+		<servlet-class>controllers.MatiereManip</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>UniteManip</servlet-name>
 		<url-pattern>/UniteManip</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MatiereManip</servlet-name>
+		<url-pattern>/MatiereManip</url-pattern>
 	</servlet-mapping>
 
 </web-app>

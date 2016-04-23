@@ -55,7 +55,7 @@ public class MatiereDaoImpl implements MatiereDao {
 		
 	}
 
-	public Matiere getMatiereById(int id) {
+	public Matiere getMatiereById(long id) {
 		Matiere matiere=null;
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
