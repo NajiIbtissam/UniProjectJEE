@@ -18,6 +18,20 @@
 		<servlet-name>MatiereManip</servlet-name>
 		<servlet-class>controllers.MatiereManip</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>LoginAdmin</display-name>
+		<servlet-name>LoginAdmin</servlet-name>
+		<servlet-class>controllers.LoginAdmin</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>KillSession</display-name>
+		<servlet-name>KillSession</servlet-name>
+		<servlet-class>controllers.KillSession</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>UniteManip</servlet-name>
 		<url-pattern>/UniteManip</url-pattern>
@@ -25,6 +39,14 @@
 	<servlet-mapping>
 		<servlet-name>MatiereManip</servlet-name>
 		<url-pattern>/MatiereManip</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>LoginAdmin</servlet-name>
+		<url-pattern>/LoginAdmin</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>KillSession</servlet-name>
+		<url-pattern>/KillSession</url-pattern>
 	</servlet-mapping>
 
 </web-app>

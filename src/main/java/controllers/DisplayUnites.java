@@ -9,11 +9,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
+import daos.AdminDao;
+import daos.AdminDaoImpl;
 import daos.MatiereDao;
 import daos.MatiereDaoImpl;
 import daos.UniteEnseignementDao;
 import daos.UniteEnseignementDaoImpl;
+import entities.Admin;
 import entities.Matiere;
 import entities.UniteEnseignement;
 
@@ -33,6 +38,7 @@ public class DisplayUnites extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		
 		//Création des unités d'enseignements
 		UniteEnseignement UE1 = new UniteEnseignement();
@@ -143,6 +149,22 @@ public class DisplayUnites extends HttpServlet {
 //		md.create(cp);
 //		md.create(ce);
 		
+		//création d'un admin
+		Admin a1=new Admin();
+		a1.setName("admin");
+		a1.setPassword("1230");
+		AdminDao ad=new AdminDaoImpl();
+		ad.create(a1);
+		
+		
+		if(request.getAttribute("username")!=null)
+		{
+		String username=(String) request.getAttribute("username");
+		HttpSession session=request.getSession();
+		session.setAttribute("username", username);
+		
+		}
+		
 		ArrayList<UniteEnseignement> arraym;
 		UniteEnseignementDao mdd = new UniteEnseignementDaoImpl();
 		arraym = mdd.getAllUnites();
@@ -150,7 +172,7 @@ public class DisplayUnites extends HttpServlet {
 			System.out.println("the array is empty");
 		else {
 			request.setAttribute("list", arraym);
-
+			
 			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/index.jsp");
 			rd.forward(request, response);
 		}
