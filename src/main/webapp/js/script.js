@@ -3,6 +3,7 @@ $(document).ready(function() {
 	$(".unitelink").click(function() {
 		id = "#" + $(this).attr("data-pk");
 		$(id).toggle();
+//		$("#inputhidden").val("qe");
 	});
 	$('.unite a#nom').editable({
 		type : 'textarea',
@@ -67,8 +68,11 @@ $(document).ready(function() {
 		
 
 		
-		$(".addunite").click(function(e){
+		$(".addmatierelink").click(function(e){
+			idUnite=$(this).attr("data-pk");
+			$("#hiddenid").val(idUnite);
 			
 		});
+	
 		
 });

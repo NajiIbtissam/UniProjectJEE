@@ -1,6 +1,8 @@
 package controllers;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,14 +22,19 @@ public class UniteManip extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try{
-		String action = request.getParameter("action");
-		String name = request.getParameter("name");
-		String value = request.getParameter("value");
-		Long id = Long.parseLong(request.getParameter("pk"));
-		UniteEnseignementDao ued = new UniteEnseignementDaoImpl();
-		UniteEnseignement u = ued.getUniteById(id);
+			UniteEnseignementDao ued = new UniteEnseignementDaoImpl();
+			
+			String action = request.getParameter("action");
+			System.out.println(action);
+			
+			
 		switch (action) {
 		case "edit":
+			String name = request.getParameter("name");
+			String value = request.getParameter("value");
+			Long id = Long.parseLong(request.getParameter("pk"));
+			
+			UniteEnseignement u = ued.getUniteById(id);
 			switch (name) {
 			case "cm":
 				u.setCM_unite(Long.parseLong(value));
@@ -52,18 +59,43 @@ public class UniteManip extends HttpServlet {
 			break;
 			
 		case "delete":
-			ued.delete(u);
+			Long idD = Long.parseLong(request.getParameter("pk"));
+			
+			UniteEnseignement uD = ued.getUniteById(idD);
+			ued.delete(uD);
 			break;
+			
+		case "create":
+
+			
+			String nom = request.getParameter("nom");
+			long cm=Long.valueOf(request.getParameter("cm")).longValue();
+			long td=Long.valueOf(request.getParameter("td")).longValue();
+			long tp=Long.valueOf(request.getParameter("tp")).longValue();
+			long ects=Long.valueOf(request.getParameter("ects")).longValue();
+			UniteEnseignement u1=new UniteEnseignement();
+			u1.setNom_unite(nom);
+			u1.setCM_unite(cm);
+			u1.setTD_unite(td);
+			u1.setTP_unite(tp);
+			u1.setECTS_unite(ects);
+			System.out.println(u1.getNom_unite());
+			ued.create(u1);
+			break;
+			
 
 		default:
 			break;
 		}//end switch
 
-		response.getWriter().print(u.getTotal_unite());
+		//response.getWriter().print(u1.getTotal_unite());
 		}catch(Exception e){
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			response.getWriter().print("Please enter a valid value");
+			e.printStackTrace();
 		}
+		 RequestDispatcher rd = request.getRequestDispatcher("/DisplayUnites");
+			rd.forward(request, response);
 	}
 
 	/**
