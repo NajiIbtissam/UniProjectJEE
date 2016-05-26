@@ -23,18 +23,17 @@ public class UniteManip extends HttpServlet {
 			throws ServletException, IOException {
 		try{
 			UniteEnseignementDao ued = new UniteEnseignementDaoImpl();
-			
 			String action = request.getParameter("action");
 			System.out.println(action);
+	
 			
 			
 		switch (action) {
 		case "edit":
+			Long id = Long.parseLong(request.getParameter("pk"));
+			UniteEnseignement u = ued.getUniteById(id);
 			String name = request.getParameter("name");
 			String value = request.getParameter("value");
-			Long id = Long.parseLong(request.getParameter("pk"));
-			
-			UniteEnseignement u = ued.getUniteById(id);
 			switch (name) {
 			case "cm":
 				u.setCM_unite(Long.parseLong(value));
@@ -56,18 +55,16 @@ public class UniteManip extends HttpServlet {
 			default:
 				break;
 			}
+			response.getWriter().print(u.getTotal_unite());
 			break;
 			
 		case "delete":
 			Long idD = Long.parseLong(request.getParameter("pk"));
-			
 			UniteEnseignement uD = ued.getUniteById(idD);
 			ued.delete(uD);
 			break;
 			
 		case "create":
-
-			
 			String nom = request.getParameter("nom");
 			long cm=Long.valueOf(request.getParameter("cm")).longValue();
 			long td=Long.valueOf(request.getParameter("td")).longValue();
@@ -88,14 +85,22 @@ public class UniteManip extends HttpServlet {
 			break;
 		}//end switch
 
-		//response.getWriter().print(u1.getTotal_unite());
+		
+		
+		
+		if(action=="create" && action=="delete")
+		{
+		 RequestDispatcher rd = request.getRequestDispatcher("/DisplayUnites");
+			rd.forward(request, response);
+		}
+
+		
 		}catch(Exception e){
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			response.getWriter().print("Please enter a valid value");
 			e.printStackTrace();
 		}
-		 RequestDispatcher rd = request.getRequestDispatcher("/DisplayUnites");
-			rd.forward(request, response);
+	
 	}
 
 	/**

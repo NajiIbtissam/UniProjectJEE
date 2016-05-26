@@ -65,6 +65,29 @@ $(document).ready(function() {
 			        }
 			    });} 
 		});  });
+	
+	
+	
+	
+	
+	$(".deletematiere").click(function(e){
+		id=$(this).attr("data-pk");
+		bootbox.confirm("Are you sure?", function(result) {
+			if (result==true){
+				$.ajax({
+			        url: './MatiereManip',
+			        type: 'POST',
+			        data: { action: "delete", 
+			        	pk:id
+			        } ,
+			        success: function (response) {
+			            location.reload();
+			        },
+			        error: function () {
+			            //your error code
+			        }
+			    });} 
+		});  });
 		
 
 		

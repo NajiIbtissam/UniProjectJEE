@@ -298,6 +298,9 @@
 								<td><a id="tp" href=# data-pk="${mat.id_matiere}">${mat.TP_matiere}</a></td>
 								<td><a id="ects" href=# data-pk="${mat.id_matiere}">${mat.ECTS_matiere}</a></td>
 								<td matieretotal="${mat.id_matiere}">${mat.total_matiere}</td>
+								<td class="action deletematiere" href="#"
+								data-pk="${mat.id_matiere}"><span
+									class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
 							</tr>
 
 						</c:forEach>
@@ -345,6 +348,9 @@
 		<%-- 	<jsp:forward page="/KillSession"/>  --%>
 
 	</c:if>
+	
+	
+	
 
 	<c:if test="${empty sessionScope.username}">
 
