@@ -35,27 +35,31 @@ public class UniteManip extends HttpServlet {
 			String name = request.getParameter("name");
 			String value = request.getParameter("value");
 			switch (name) {
+			case "nom" :
+				u.setnom(value);
+				ued.update(u);
+				break;
 			case "cm":
-				u.setCM_unite(Long.parseLong(value));
+				u.setcm(Long.parseLong(value));
 				ued.update(u);
 				break;
 			case "td":
-				u.setTD_unite(Long.parseLong(value));
+				u.settd(Long.parseLong(value));
 				ued.update(u);
 				break;
 			case "tp":
-				u.setTP_unite(Long.parseLong(value));
+				u.settp(Long.parseLong(value));
 				ued.update(u);
 				break;
 			case "ects":
-				u.setECTS_unite(Long.parseLong(value));
+				u.setects(Long.parseLong(value));
 				ued.update(u);
 				break;
 
 			default:
 				break;
 			}
-			response.getWriter().print(u.getTotal_unite());
+			response.getWriter().print(u.gettotal());
 			break;
 			
 		case "delete":
@@ -71,12 +75,12 @@ public class UniteManip extends HttpServlet {
 			long tp=Long.valueOf(request.getParameter("tp")).longValue();
 			long ects=Long.valueOf(request.getParameter("ects")).longValue();
 			UniteEnseignement u1=new UniteEnseignement();
-			u1.setNom_unite(nom);
-			u1.setCM_unite(cm);
-			u1.setTD_unite(td);
-			u1.setTP_unite(tp);
-			u1.setECTS_unite(ects);
-			System.out.println(u1.getNom_unite());
+			u1.setnom(nom);
+			u1.setcm(cm);
+			u1.settd(td);
+			u1.settp(tp);
+			u1.setects(ects);
+			System.out.println(u1.getnom());
 			ued.create(u1);
 			break;
 			
@@ -88,7 +92,7 @@ public class UniteManip extends HttpServlet {
 		
 		
 		
-		if(action=="create" && action=="delete")
+		if(action.equals("create"))
 		{
 		 RequestDispatcher rd = request.getRequestDispatcher("/DisplayUnites");
 			rd.forward(request, response);

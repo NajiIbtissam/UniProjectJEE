@@ -1,16 +1,20 @@
 package entities;
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 
@@ -22,57 +26,61 @@ public class UniteEnseignement implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Basic
-    private long ECTS_unite;
+    private long ects;
 
     @Basic
-    private long CM_unite;
+    private long cm;
 
     @Column(unique = true)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_unite;
+    private Long id;
 
-    @OneToMany(targetEntity = Matiere.class, mappedBy = "uniteEn",cascade=CascadeType.ALL)
+    @OneToMany(targetEntity = Matiere.class, mappedBy = "uniteEn",cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<Matiere> ListMatieres;
+    
+    @ManyToOne(targetEntity = Formation.class)
+    private Formation formation;
 
     @Basic
-    private long total_unite;
+    private long total;
 
     @Basic
-    private long TD_unite;
+    private long td;
 
     @Basic
-    private long TP_unite;
+    private long tp;
 
     @Basic
-    private String nom_unite;
+    private String nom;
 
     public UniteEnseignement() {
 
     }
 
-    public long getECTS_unite() {
-        return this.ECTS_unite;
+    public long getects() {
+        return this.ects;
     }
 
-    public void setECTS_unite(long ECTS_unite) {
-        this.ECTS_unite = ECTS_unite;
+    public void setects(long ects) {
+        this.ects = ects;
     }
 
-    public long getCM_unite() {
-        return this.CM_unite;
+    public long getcm() {
+        return this.cm;
     }
 
-    public void setCM_unite(long CM_unite) {
-        this.CM_unite = CM_unite;
+    public void setcm(long cm) {
+        this.cm = cm;
     }
 
-    public Long getId_unite() {
-        return this.id_unite;
+    public Long getid() {
+        return this.id;
     }
 
-    public void setId_unite(Long id_unite) {
-        this.id_unite = id_unite;
+    public void setid(Long id) {
+        this.id = id;
     }
 
     public List<Matiere> getListMatieres() {
@@ -83,35 +91,43 @@ public class UniteEnseignement implements Serializable {
         this.ListMatieres = ListMatieres;
     }
 
-    public long getTotal_unite() {
-    	return TD_unite+TP_unite+CM_unite;
+    public long gettotal() {
+    	return td+tp+cm;
     }
 
-    public void setTotal_unite(long total_unite) {
-        this.total_unite = total_unite;
+    public void settotal(long total) {
+        this.total = total;
     }
 
-    public long getTD_unite() {
-        return this.TD_unite;
+    public long gettd() {
+        return this.td;
     }
 
-    public void setTD_unite(long TD_unite) {
-        this.TD_unite = TD_unite;
+    public void settd(long td) {
+        this.td = td;
     }
 
-    public long getTP_unite() {
-        return this.TP_unite;
+    public long gettp() {
+        return this.tp;
     }
 
-    public void setTP_unite(long TP_unite) {
-        this.TP_unite = TP_unite;
+    public void settp(long tp) {
+        this.tp = tp;
     }
 
-    public String getNom_unite() {
-        return this.nom_unite;
+    public String getnom() {
+        return this.nom;
     }
 
-    public void setNom_unite(String nom_unite) {
-        this.nom_unite = nom_unite;
+    public void setnom(String nom) {
+        this.nom = nom;
+    }
+    
+    public Formation getFormation() {
+        return this.formation;
+    }
+
+    public void setFormation(Formation formation) {
+        this.formation = formation;
     }
 }

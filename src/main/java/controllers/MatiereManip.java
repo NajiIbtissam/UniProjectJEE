@@ -37,19 +37,19 @@ public class MatiereManip extends HttpServlet {
 				Matiere u = md.getMatiereById(id);
 				switch (name) {
 				case "cm":
-					u.setCM_matiere(Long.parseLong(value));
+					u.setcm(Long.parseLong(value));
 					md.update(u);
 					break;
 				case "td":
-					u.setTD_matiere(Long.parseLong(value));
+					u.settd(Long.parseLong(value));
 					md.update(u);
 					break;
 				case "tp":
-					u.setTP_matiere(Long.parseLong(value));
+					u.settp(Long.parseLong(value));
 					md.update(u);
 					break;
 				case "ects":
-					u.setECTS_matiere(Long.parseLong(value));
+					u.setects(Long.parseLong(value));
 					md.update(u);
 					break;
 
@@ -78,11 +78,11 @@ public class MatiereManip extends HttpServlet {
 				long ects=Long.valueOf(request.getParameter("ects")).longValue();
 				
 				Matiere u1=new Matiere();
-				u1.setNom_matiere(nom);
-				u1.setCM_matiere(cm);
-				u1.setTD_matiere(td);
-				u1.setTP_matiere(tp);
-				u1.setECTS_matiere(ects);
+				u1.setnom(nom);
+				u1.setcm(cm);
+				u1.settd(td);
+				u1.settp(tp);
+				u1.setects(ects);
 				u1.setUniteEn(ue);
 				md.create(u1);
 				break;

@@ -1,17 +1,17 @@
 package daos;
 
-
 import java.util.ArrayList;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import entities.Matiere;
-import entities.UniteEnseignement;
+import entities.Formation;
 
-public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
+
+public class FormationDaoImpl implements FormationDao{
+
 	
-	public void create(UniteEnseignement entity) {
+	public void create(Formation entity) {
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
 		try {
@@ -23,11 +23,11 @@ public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
 		}finally {
 			s.close();
 		}
-
 		
 	}
 
-	public void update(UniteEnseignement entity) {
+	
+	public void update(Formation entity) {
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
 		try {
@@ -38,9 +38,12 @@ public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
 		}finally {
 			s.close();
 		}
+		
+		
 	}
 
-	public void delete(UniteEnseignement entity) {
+	
+	public void delete(Formation entity) {
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
 		try {
@@ -53,16 +56,15 @@ public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
 			s.close();
 		}
 		
-		
 	}
 
-	public UniteEnseignement getUniteById(long id) {
-		UniteEnseignement ue=null;
+	
+	public Formation getFormationById(long id) {
+		Formation formation=null;
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		Transaction tx = s.beginTransaction();
 		try {
-		ue=s.get(UniteEnseignement.class, id);
-		//ue= iteEnseignements.byId( UniteEnseignement.class ).load( id );
+			formation=s.get(Formation.class, id);
 		tx.commit();
 		} catch (Exception e) {
 			tx.rollback();
@@ -70,16 +72,18 @@ public class UniteEnseignementDaoImpl implements UniteEnseignementDao {
 		}finally {
 			s.close();
 		}
-		return ue;
+		return formation;
 	}
 
 	@SuppressWarnings("unchecked")
-	public ArrayList<UniteEnseignement> getAllUnites() {
-		ArrayList<UniteEnseignement>UE=new ArrayList<UniteEnseignement>();
+	
+	public ArrayList<Formation> getAllFormations() {
+		ArrayList<Formation>formations=new ArrayList<Formation>();
 		Session s = HibernateUtils.getSessionFactory().openSession();
 		//Transaction tx = s.beginTransaction();
-		UE=(ArrayList<UniteEnseignement>) s.createCriteria(UniteEnseignement.class).list();
-		return UE;
+		formations=(ArrayList<Formation>) s.createCriteria(Formation.class).list();
+		return formations;
 	}
+	
 
 }

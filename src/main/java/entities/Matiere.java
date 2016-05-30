@@ -21,63 +21,63 @@ public class Matiere implements Serializable {
 	@Column(unique = true)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_matiere;
+    private Long id;
 
     @Basic
-    private long TP_matiere;
+    private long tp;
 
     @Basic
-    private long CM_matiere;
+    private long cm;
 
     @Basic
-    private long TD_matiere;
+    private long td;
 
     @ManyToOne(targetEntity = UniteEnseignement.class)
     private UniteEnseignement uniteEn;
 
     @Basic
-    private long ECTS_matiere;
+    private long ects;
 
     @Basic
-    private String nom_matiere;
+    private String nom;
 
     @Basic
-    private long total_matiere;
+    private long total;
 
     public Matiere() {
 
     }
 
-    public Long getId_matiere() {
-        return this.id_matiere;
+    public Long getid() {
+        return this.id;
     }
 
-    public void setId_matiere(Long id_matiere) {
-        this.id_matiere = id_matiere;
+    public void setid(Long id) {
+        this.id = id;
     }
 
-    public long getTP_matiere() {
-        return this.TP_matiere;
+    public long gettp() {
+        return this.tp;
     }
 
-    public void setTP_matiere(long TP_matiere) {
-        this.TP_matiere = TP_matiere;
+    public void settp(long tp) {
+        this.tp = tp;
     }
 
-    public long getCM_matiere() {
-        return this.CM_matiere;
+    public long getcm() {
+        return this.cm;
     }
 
-    public void setCM_matiere(long CM_matiere) {
-        this.CM_matiere = CM_matiere;
+    public void setcm(long cm) {
+        this.cm = cm;
     }
 
-    public long getTD_matiere() {
-        return this.TD_matiere;
+    public long gettd() {
+        return this.td;
     }
 
-    public void setTD_matiere(long TD_matiere) {
-        this.TD_matiere = TD_matiere;
+    public void settd(long td) {
+        this.td = td;
     }
 
     public UniteEnseignement getUniteEn() {
@@ -88,28 +88,28 @@ public class Matiere implements Serializable {
         this.uniteEn = UniteEn;
     }
 
-    public long getECTS_matiere() {
-        return this.ECTS_matiere;
+    public long getects() {
+        return this.ects;
     }
 
-    public void setECTS_matiere(long ECTS_matiere) {
-        this.ECTS_matiere = ECTS_matiere;
+    public void setects(long ects) {
+        this.ects = ects;
     }
 
-    public String getNom_matiere() {
-        return this.nom_matiere;
+    public String getnom() {
+        return this.nom;
     }
 
-    public void setNom_matiere(String nom_matiere) {
-        this.nom_matiere = nom_matiere;
+    public void setnom(String nom) {
+        this.nom = nom;
     }
 
-    public long getTotal_matiere() {
-    	return this.total_matiere=TD_matiere+TP_matiere+CM_matiere;
+    public long gettotal() {
+    	return this.total=td+tp+cm;
     }
 
-    public void setTotal_matiere(long total_matiere) {
-        this.total_matiere = total_matiere;
+    public void settotal(long total) {
+        this.total = total;
     }
 }
 

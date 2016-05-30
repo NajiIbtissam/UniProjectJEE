@@ -1,38 +1,30 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import daos.AdminDao;
-import daos.AdminDaoImpl;
-import entities.Admin;
+import daos.FormationDao;
+import daos.FormationDaoImpl;
+import entities.Formation;
 
-/**
- * Servlet implementation class LoginAdmin
- */
-public class LoginAdmin extends HttpServlet {
+public class DisplayFormations extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String name = request.getParameter("username");
-		String password = request.getParameter("password");
-		AdminDao ad = new AdminDaoImpl();
-		Admin a = ad.getAdminByName(name, password);
-		if (a != null)
+		FormationDao fd = new FormationDaoImpl();
 
-			request.getSession().setAttribute("username", name);
-		// RequestDispatcher rd =
-		// request.getRequestDispatcher("/DisplayUnites");
-		// rd.forward(request, response);
+		List<Formation> formations = fd.getAllFormations();
+		request.setAttribute("formations", formations);
 
-		else
-			response.getWriter().append("false");
-
+		RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/FormationsPage.jsp");
+		rd.forward(request, response);
 	}
 
 	/**

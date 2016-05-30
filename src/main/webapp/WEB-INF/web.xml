@@ -4,6 +4,12 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 	<display-name>formation</display-name>
+	
+
+	<welcome-file-list>
+		<welcome-file>Formations</welcome-file>
+	</welcome-file-list>
+
 	<servlet>
 		<description>
 		</description>
@@ -32,6 +38,20 @@
 		<servlet-name>KillSession</servlet-name>
 		<servlet-class>controllers.KillSession</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>DisplayFormations</display-name>
+		<servlet-name>DisplayFormations</servlet-name>
+		<servlet-class>controllers.DisplayFormations</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>GestionFormations</display-name>
+		<servlet-name>GestionFormations</servlet-name>
+		<servlet-class>controllers.GestionFormations</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>UniteManip</servlet-name>
 		<url-pattern>/UniteManip</url-pattern>
@@ -48,5 +68,14 @@
 		<servlet-name>KillSession</servlet-name>
 		<url-pattern>/KillSession</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DisplayFormations</servlet-name>
+		<url-pattern>/Formations</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GestionFormations</servlet-name>
+		<url-pattern>/GestionFormations</url-pattern>
+	</servlet-mapping>
+	
 
 </web-app>

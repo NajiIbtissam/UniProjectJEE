@@ -9,6 +9,7 @@ $(document).ready(function() {
 		type : 'textarea',
 		url : './UniteManip',
 		title : 'Enter new value',
+		placement : 'bottom',
 		params : {
 			action : "edit"
 		}
@@ -18,6 +19,7 @@ $(document).ready(function() {
 		type : 'text',
 		url : './UniteManip',
 		title : 'Enter new value',
+		placement : 'bottom',
 		params : {
 			action : "edit"
 		},
@@ -31,6 +33,7 @@ $(document).ready(function() {
 		type : 'textarea',
 		url : './MatiereManip',
 		title : 'Enter new value',
+		placement : 'bottom',
 		params : {
 			action : "edit"
 		}
@@ -39,6 +42,7 @@ $(document).ready(function() {
 		type : 'text',
 		url : './MatiereManip',
 		title : 'Enter new value',
+		placement : 'bottom',
 		params : {
 			action : "edit"
 		},
@@ -96,6 +100,37 @@ $(document).ready(function() {
 			$("#hiddenid").val(idUnite);
 			
 		});
+		$("#log").submit(function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			$.ajax({
+					method : "POST",
+					url : "./LoginAdmin",
+					data : $(this).serialize(),
+					dataType : "text"
+			}).done(function( data ) {
+				if(data!="false")
+					location.reload();
+				
+			});
+			
+		});
+		$("#logout").click(function(e){
+			e.preventDefault();
+			e.stopPropagation();
+			$.ajax({
+					method : "POST",
+					url : "./KillSession",
+					data : $(this).serialize(),
+					dataType : "text"
+			}).done(function( data ) {
+				location.reload();
+				
+			});
+			
+		});
+		
+		
 	
 		
 });

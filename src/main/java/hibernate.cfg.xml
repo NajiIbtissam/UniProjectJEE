@@ -30,6 +30,7 @@
 		<!-- Names the annotated entity class -->
 		<mapping class="entities.UniteEnseignement" />
 		<mapping class="entities.Matiere" />
+		<mapping class="entities.Formation" />
 		<mapping class="entities.Admin" />
 	</session-factory>
 
